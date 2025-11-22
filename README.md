@@ -125,7 +125,7 @@ File → Project Structure → Modules → Dependencies → + Add JAR
 
 ```mermaid
 graph TD;
-    A[User CLI] --> B[UI Layer]
+    A[User CLI] --> B[Controller Layer]
     B --> C[Service Layer]
     C --> D[DAO Layer]
     D --> E[(PostgreSQL DB)]
@@ -196,7 +196,7 @@ Full SQL seed data provided here:
 
 ### 1️⃣ Clone the repository
 ```bash
-git clone https://github.com/yourusername/Library-Management-System.git
+git clone https://github.com/joel-003/Library-Management-System.git
 cd Library-Management-System
 ```
 
