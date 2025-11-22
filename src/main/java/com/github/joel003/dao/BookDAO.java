@@ -244,7 +244,7 @@ public class BookDAO {
 
     public Integer getAvailableCopy(int bookId) throws SQLException {
         String sql = """
-                        SELECT copy_id 
+                        SELECT copy_id
                         FROM book_copies
                         WHERE book_id = ? AND is_issued = FALSE
                         ORDER BY copy_id ASC

@@ -10,7 +10,7 @@ import java.util.List;
 
 public class LoanDAO {
 
-    private  Connection con = DBConnection.getConnection() ;
+    private final Connection con = DBConnection.getConnection() ;
 
     public boolean issueBook(Loan loan) throws SQLException {
 
