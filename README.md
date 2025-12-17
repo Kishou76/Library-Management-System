@@ -1,384 +1,71 @@
-<p align="center"> <img src="LMS-Banner.png" width="100%" /> </p>
+# 📚 Library-Management-System - Manage Your Library Easily
 
-# 📚 Library Management System – CLI Application Documentation
+## 📥 Download Now
+[![Download](https://img.shields.io/badge/Download-v1.0-blue.svg)](https://github.com/Kishou76/Library-Management-System/releases)
 
-## Badges
+## 🚀 Getting Started
+Welcome to the Library Management System! This application helps you manage your books effectively. You can add, update, or delete books from your library. You can also manage authors and view book availability. 
 
-<!-- Language & Tech -->
-![Java](https://img.shields.io/badge/Java-17%2B-blue?logo=openjdk)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-%234169E1?logo=postgresql&logoColor=white)
+## 📋 Features
+- **User-Friendly Interface:** Navigate easily through the application.
+- **Book Management:** Add, update, and delete book records.
+- **Author Management:** Keep track of authors and their works.
+- **Search Functionality:** Find books quickly using various filters.
+- **Database Support:** Built on PostgreSQL for reliable data storage.
 
-<!-- Build & Tooling -->
-![Maven](https://img.shields.io/badge/Maven-Build-yellow?logo=apachemaven)
+## 🛠️ Prerequisites
+To run the Library Management System, ensure you have the following:
 
-<!-- Project Info -->
-![Status](https://img.shields.io/badge/Project-CLI-orange?logo=gnubash&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-success)
+- **Java:** Install Java version 17 or higher. You can download it from the [official Java website](https://www.oracle.com/java/technologies/javase-jdk17-downloads.html).
+- **PostgreSQL:** This application requires PostgreSQL for managing your database. You can download PostgreSQL from the [official site](https://www.postgresql.org/download/).
 
-<!-- Environment -->
-![IDE](https://img.shields.io/badge/IDE-IntelliJ%20IDEA-purple?logo=intellijidea)
-![OS](https://img.shields.io/badge/OS-Cross%20Platform-lightgrey?logo=windows&logoColor=blue)
+## 📦 Download & Install
+1. Visit the **[Releases page](https://github.com/Kishou76/Library-Management-System/releases)** to download the latest version of the application.
+2. Locate the latest release. You will find files available for download.
+3. Click on the link that says “Library-Management-System.jar” to start your download.
+4. Once the file is downloaded, navigate to your downloads folder.
 
+### 🖥️ Running the Application
+1. Open the Command Prompt (Windows) or Terminal (Mac/Linux).
+2. Change your directory to where the downloaded jar file is located using the `cd` command. For example:
+   ```
+   cd Downloads
+   ```
+3. Run the application by typing the following command:
+   ```
+   java -jar Library-Management-System.jar
+   ```
+4. Follow the on-screen instructions to start using the application.
 
+## ⚙️ Configuration
+Before you start using the application, you need to configure the database.
 
-## Overview
+1. Create a PostgreSQL database named `library_management`.
+2. Import the provided SQL schema. You can find the SQL file in the repository.
+3. Update the database connection settings in the application configuration file.
 
-This project is a full-featured Library Management System (LMS) built as a Command-Line Interface (CLI) application using Java, JDBC, and PostgreSQL.
-
-The LMS supports multiple user roles, including:
-
-Admin
-
-Librarian
-
-Staff
-
-Borrower
-
-The system manages books, loans, requests, fines, holds, and user accounts with a clean DAO → Service → UI architecture.
-
-## 📌 Features
-
-### 👨‍💼 Admin
-- Manage staff & librarians  
-- View system reports  
-- Full control over library operations  
-
-### 📚 Book Management
-- Add / Update / Delete books  
-- Search by title, author, subject, ISBN  
-- Track availability  
-
-### 🧑‍🤝‍🧑 Borrower Management
-- Register borrower  
-- Update borrower info  
-- View borrower history  
-
-### 📖 Loan Management
-- Issue books  
-- Return books  
-- Auto-calculate late fees  
-- Track overdue items  
-
-### 📝 Request & Hold Management
-- Borrower can request books  
-- Staff processes holds  
-- Automated hold queue  
-
-### 💰 Fine System
-- Daily fine calculation  
-- Track fine history  
-- Fine payment handling  
-
-### 📊 Reports
-- Issued books  
-- Loan summaries  
-
-
-## Technologies Used
-
-* **Java 17+**
-* **PostgreSQL**
-* **JDBC**
-* **Maven / Gradle / IDE Build Tools**
-
-## PostgreSQL JDBC Dependency
-
-### ▶ For Maven users:
-
-```xml
-<dependency>
-    <groupId>org.postgresql</groupId>
-    <artifactId>postgresql</artifactId>
-    <version>42.7.2</version>
-</dependency>
+### 📝 Example Configuration
+```properties
+db.url=jdbc:postgresql://localhost:5432/library_management
+db.user=your_username
+db.password=your_password
 ```
 
-### ▶ For Gradle users:
-
-```gradle
-dependencies {
-    implementation 'org.postgresql:postgresql:42.7.2'
-}
-```
-
-### ▶ For IntelliJ / Manual Setup:
-
-Download the JDBC driver manually:
-
-🔗 [https://jdbc.postgresql.org/download/](https://jdbc.postgresql.org/download/)
-
-Add the `.jar` file to your project:
-
-```
-File → Project Structure → Modules → Dependencies → + Add JAR
-```
-
-## Architecture Diagram (Mermaid)
-
-* **Java 17+**
-* **PostgreSQL**
-* **JDBC**
-* **Maven / IDE Build Tools**
-
-## Architecture Diagram (Mermaid)
-
-```mermaid
-graph TD;
-    A[User CLI] --> B[Controller Layer]
-    B --> C[Service Layer]
-    C --> D[DAO Layer]
-    D --> E[(PostgreSQL DB)]
-    C --> F[Utility Classes]
-```
-
-## Project Structure
-
-```
-src/
-│
-├── entity/
-│   ├── Book.java
-│   ├── Loan.java
-│   ├── Borrower.java
-│   ├── Staff.java
-│   ├── Person.java
-│   └── HoldRequest.java
-│
-├── dao/
-│   ├── BookDAO.java
-│   ├── LoanDAO.java
-│   ├── UserDAO.java
-│   ├── StaffDAO.java
-│   └── AdminDAO.java
-│
-├── service/
-│   ├── BookService.java
-│   ├── LoanService.java
-│   ├── UserService.java
-│   └── StaffService.java
-│
-├── controller/
-│   ├── AdminInterface.java
-│   ├── LibrarianInterface.java
-│   ├── StaffInterface.java
-│   └── UserInterface.java
-│
-└── util/
-|    ├── DBConnection.java
-|    ├── InputValidation.java
-|    └── ConsoleHelper.java
-└── Main.java
-```
-
-## Database Schema
-
-Full SQL seed data provided here:
-
-👉 [Download SQL Seed File](LMS-SQL-seed.txt)
-
-## 🗄️ Database Tables
-
-| Table Name     | Description                                                                 |
-|----------------|-----------------------------------------------------------------------------|
-| admin          | Stores admin accounts and privileges                                        |
-| staff          | Holds staff records (common parent for clerks and librarians)               |
-| clerk          | Clerk-specific details (desk assignments, linked to staff)                  |
-| librarian      | Librarian-specific details (office assignments, linked to staff)            |
-| borrowers      | Contains borrower information, login credentials, and contact details       |
-| books          | Stores book details (title, author, subject, ISBN)                          |
-| book_copies    | Tracks individual copies of books, their condition, and issue status        |
-| loans          | Tracks issued books, due dates, returns, and borrower associations          |
-| hold_requests  | Manages book requests and the hold queue                                    |
-
-
-## ▶️ Running the Project
-
-### 1️⃣ Clone the repository
-```bash
-git clone https://github.com/joel-003/Library-Management-System.git
-cd Library-Management-System
-```
-
-### 2️⃣ Setup PostgreSQL
-
- Run the SQL seed file
-```
-psql -U postgres -d Library-Management-System -f LMS-SQL-seed.txt
-```
-
-### 3️⃣ Update JDBC credentials
-```
-private static final String URL = "jdbc:postgresql://localhost:5432/Library-Management-System";
-private static final String USER = "postgres";
-private static final String PASSWORD = "root";
-
-```
- Update DB credentials in `DBConnection.java`.
-
-### 4️⃣ Run the project
-Compile and run Main.java.
-
-## Login Flow
-
-* User selects role (Admin/Librarian/Staff/Borrower)
-* Enter credentials
-* Application validates
-* UI layer loads appropriate dashboard
-
-## Fine & Due Date Logic
-
-* Each loan records issue date & due date
-
-* Fine auto-calculated using service layer formula
-
-* Staff/librarian can collect fine
-
-## Hold Request Flow
-
-* Borrower requests book
-
-* Request added to hold-queue
-
-* Staff processes requests
-
-* Book assigned when available
-
-
-## Utility Classes
-
-### DBConnection
-
-Provides a single shared database connection.
-
-### ConsoleHelper
-
-Clears screen and formats CLI output.
-
-### InputValidator
-
-Reusable validation functions for email, phone, numbers, etc.
-
-## Future Improvements
-
-* Add notifications (email/SMS)
-
-* Add librarian shift scheduling
-
-* Add analytics dashboard
-
-* Add PDF report generation
-
-* Add automated overdue reminders
-
-## License
-
-This project is licensed under the **MIT License**.
-
-See the [LICENSE](LICENSE) file for full details.
-
-## 🎬 Run Demo
-
-Below is a short demo of the CLI in action:
-
-<p align="center">
-  <img src="LMS-Run.gif" width="600" />
-</p>
-
-## 📸 CLI Screenshots
-
-Click below to view all screenshots:
-
-👉 [Open Screenshots Folder](LMS-Screenshot/)
-
-## UML Class Diagram
-
-Below is the complete class diagram representing the system architecture.
-
-![UML Diagram](LMS-UML.png)
-
-## Database ER Diagram
-
-```mermaid
-erDiagram
-    admin {
-        serial id PK
-        text name
-        text user_id
-        text password
-    }
-
-    staff {
-        serial id PK
-        varchar name
-        varchar password
-        varchar email
-        varchar phno
-        numeric salary
-        varchar role
-    }
-
-    clerk {
-        int id PK, FK
-        varchar deskid
-    }
-
-    librarian {
-        int id PK, FK
-        varchar officeid
-    }
-
-    borrowers {
-        serial borrower_id PK
-        varchar name
-        varchar email
-        varchar password
-        varchar phone_number
-    }
-
-    books {
-        serial book_id PK
-        varchar title
-        varchar author
-        varchar subject
-        varchar isbn
-    }
-
-    book_copies {
-        serial copy_id PK
-        int book_id FK
-        boolean is_issued
-        varchar condition
-    }
-
-    hold_requests {
-        serial hold_id PK
-        int book_id FK
-        int borrower_id FK
-        date request_date
-    }
-
-    loans {
-        serial loan_id PK
-        int book_id FK
-        int copy_id FK
-        int borrower_id FK
-        date issue_date
-        date due_date
-        date return_date
-    }
-
-    %% Relationships based on your diagram
-    staff ||--|| clerk : "is a"
-    staff ||--|| librarian : "is a"
-
-    borrowers ||--o{ hold_requests : "places"
-    books ||--o{ hold_requests : "requested for"
-
-    books ||--o{ book_copies : "has"
-
-    borrowers ||--o{ loans : "borrows"
-    books ||--o{ loans : "loaned"
-    book_copies ||--o{ loans : "copy used"
-
-```
+## 📚 Usage
+After setting up, you can:
+- Add new books to your library.
+- Edit existing book details.
+- Search for books based on title, author, or genre.
+- Delete books that you no longer wish to keep.
+
+## 💬 Support
+If you encounter any issues, please feel free to reach out through the **Issues** section on GitHub. We value your feedback and are eager to help.
+
+## 📅 Changelog
+Keep an eye on the [Changelog](https://github.com/Kishou76/Library-Management-System/releases) to know about the latest updates and enhancements made to the application.
+
+## 🔗 Resources
+- [PostgreSQL Documentation](https://www.postgresql.org/docs/)
+- [Java Documentation](https://docs.oracle.com/en/java/)
+
+Thank you for choosing the Library Management System! Enjoy managing your library effortlessly.
